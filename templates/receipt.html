@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}RN | Receipt{% endblock %}
+
+{% block content %}
+    <section id = "receipt" class = "container">
+        <div class = "orderText"></div>
+
+        <div class = "addressDetails"></div>
+
+        <div class = "orderedProdDetails">
+            <table width = "50%">
+                <thead>
+                    <tr>
+                        <td>PRODUCT</td>
+                        <td>QUANTITY</td>
+                        <td>SUBTOTAL</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <button class = "dark">Print Receipt</button>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src = "../static/address_OrderConfirm.js"></script>   
+    <script src = "../static/script.js"></script> 
+    <script src = "../static/receipt.js"></script>
+{% endblock %}

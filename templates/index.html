@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}RN | Home{% endblock %}
+
+{% block content %}
+    <section id = "menWomen" class = "container">
+        <div class = "men">
+            <h2>For Him</h2>
+            <button class = "gold">Explore</button>
+        </div>
+
+        <div class = "women">
+            <h2>For Her</h2>
+            <button class = "gold">Explore</button>
+        </div>
+    </section>
+
+    <section id = "features" class = "container">
+        <div class = "fe-box">
+            <img src = "../static/images/Features/Free Shipping.png" alt = "">
+            <h6>Free Shipping</h6>
+        </div>
+
+        <div class = "fe-box">
+            <img src = "../static/images/Features/Online Order.png" alt = "">
+            <h6>Online Order</h6>
+        </div>
+
+        <div class = "fe-box">
+            <img src = "../static/images/Features/CS.png" alt = "">
+            <h6>Customer Service</h6>
+        </div>
+
+        <div class = "fe-box">
+            <img src = "../static/images/Features/Save Money.png" alt = "">
+            <h6>Save Money</h6>
+        </div>
+
+        <div class = "fe-box">
+            <img src = "../static/images/Features/Promotions.png" alt = "">
+            <h6>Promotions</h6>
+        </div>
+    </section>
+
+    <section id = "featuredProd" class = "container">
+        <h2>Featured Products</h2>
+        <div class = "prod-container">
+            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
+                <div class="desc">
+                    <span>RN</span>
+                    <h5>Blue De Chanel</h5>
+                    <span>Some description about the product...</span>
+                    <h4>2500/- PKR</h4>
+                </div>
+                <button class = "dark">Add To Cart</button>
+            </div>
+
+            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
+                <div class="desc">
+                    <span>RN</span>
+                    <h5>Blue De Chanel</h5>
+                    <span>Some description about the product...</span>
+                    <h4>2500/- PKR</h4>
+                </div>
+                <button class = "dark">Add To Cart</button>
+            </div>
+
+            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
+                <div class="desc">
+                    <span>RN</span>
+                    <h5>Blue De Chanel</h5>
+                    <span>Some description about the product...</span>
+                    <h4>2500/- PKR</h4>
+                </div>
+                <button class = "dark">Add To Cart</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menButton = document.querySelector("#menWomen .men button");
+            const womenButton = document.querySelector("#menWomen .women button");
+
+            menButton.addEventListener('click', () => {
+                window.location.href = "/shop";
+            });
+            
+
+            womenButton.addEventListener('click', () => {
+                window.location.href = "/shop";
+            });
+        });
+    </script>
+    <script src = "../static/script.js"></script>
+{% endblock %}

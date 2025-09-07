@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RN{% endblock %}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+    <div class="full-width-header">
+        <section id="header" class="container">
+            <a href="/"><img src="../static/images/ReyNoon Logo.jpg" class="logo" alt="" width="70px" height="70px"></a>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="/" class="{% if request.url.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/shop" class="{% if request.url.path == '/shop' %}active{% endif %}">Shop</a></li>
+                    <li><a href="/contact" class="{% if request.url.path == '/contact' %}active{% endif %}">Contact</a></li>
+                    <li id="cart"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <a href="#" id="closeTabNavBar"><i class="fa-solid fa-xmark" style="color: #dbab2d;"></i></a>
+                </ul>
+            </div>
+
+            <div id="tablet">
+                <a href="/cart"><i class="fa-solid fa-cart-shopping" style="color: #dbab2d;"></i></a>
+                <i id="tabNavbar" class="fa-solid fa-bars" style="color: #dbab2d;"></i>
+            </div>
+        </section>
+    </div>
+
+    <!-- Main content -->
+    {% block content %}{% endblock %}
+
+    <section id = "newsletter" class = "container">
+        <div class = "newsText">
+            <h4>Sign up for our Newsletter!</h4>
+            <p>Get Email updates about our latest products and <span>special offers</span></p>
+        </div>
+
+        <div class = "newsForm">
+            <input type = "text" placeholder = "Your Email Address">
+            <button>Sign up</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="full-width-footer">
+        <footer class="container">
+            <div class="col">
+                <img class="logo" src="../static/images/ReyNoon Logo.jpg" alt="" width="70px" height="70px">
+                <h4>Contact</h4>
+                <p><strong>Address:</strong> 562 Wellington Road, Street 32, San Francisco</p>
+                <p><strong>Phone:</strong> +92 318 2696611</p>
+                <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            </div>
+
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <a href="https://www.instagram.com/rey.noon/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook" target="_blank"></i></a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>Copyright @2025 <a href="/"><u>RN Ltd.</u></a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../static/script.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

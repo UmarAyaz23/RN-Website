@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}RN | Product Page{% endblock %}
+
+{% block content %}
+    <section id="prodDetails" class="container">
+        <div class="prodImage">
+            <img id="mainImg" width="100%" alt="Product Image">
+    
+            <div class="imgGroup" id="smallImagesContainer">
+                <!-- Small images will be added here dynamically -->
+            </div>
+        </div>
+    
+        <div class="prodText">
+            <h4 id="productName"></h4>
+            <h2 id="productPrice"></h2>
+            <input type="number" value="1" min="1" id="quantity">
+            <button class="dark">Add to Cart</button>
+            <h4>Product Details</h4>
+            <span id="productDescription"></span>
+        </div>
+    </section>
+
+    <section id = "featuredProd2" class="container">
+        <h2>Featured Products</h2>
+        <div class = "shopContainer">
+        
+            <div class="prod-container">
+                <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../Images/Product/Blue De Chanel - Product.jpg', ['../Images/Product/Blue De Chanel - Product.jpg', '../Images/Product/CK Eternity Men - Product.jpg', '../Images/Product/Dior Sauvage - Product Design.jpg', '../Images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                    <img src="../Images/Product/Blue De Chanel - Product.jpg" alt="">
+                    <div class="desc">
+                        <span>RN</span>
+                        <h5>Blue De Chanel</h5>
+                        <span>Some description about the product...</span>
+                        <h4>2500/- PKR</h4>
+                    </div>
+                    <button class = "dark">Add To Cart</button>
+                </div>
+    
+                <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../Images/Product/Blue De Chanel - Product.jpg', ['../Images/Product/Blue De Chanel - Product.jpg', '../Images/Product/CK Eternity Men - Product.jpg', '../Images/Product/Dior Sauvage - Product Design.jpg', '../Images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                    <img src="../Images/Product/Blue De Chanel - Product.jpg" alt="">
+                    <div class="desc">
+                        <span>RN</span>
+                        <h5>Blue De Chanel</h5>
+                        <span>Some description about the product...</span>
+                        <h4>2500/- PKR</h4>
+                    </div>
+                    <button class = "dark">Add To Cart</button>
+                </div>
+    
+                <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../Images/Product/Blue De Chanel - Product.jpg', ['../Images/Product/Blue De Chanel - Product.jpg', '../Images/Product/CK Eternity Men - Product.jpg', '../Images/Product/Dior Sauvage - Product Design.jpg', '../Images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
+                    <img src="../Images/Product/Blue De Chanel - Product.jpg" alt="">
+                    <div class="desc">
+                        <span>RN</span>
+                        <h5>Blue De Chanel</h5>
+                        <span>Some description about the product...</span>
+                        <h4>2500/- PKR</h4>
+                    </div>
+                    <button class = "dark">Add To Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var mainImg = document.getElementById("mainImg");
+        var smallImg = document.getElementsByClassName("smallImg");
+
+        smallImg[0].onclick = function(){
+            mainImg.src = smallImg[0].src;
+        }
+
+        smallImg[1].onclick = function(){
+            mainImg.src = smallImg[1].src;
+        }
+
+        smallImg[2].onclick = function(){
+            mainImg.src = smallImg[2].src;
+        }
+
+        smallImg[3].onclick = function(){
+            mainImg.src = smallImg[3].src;
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            document.querySelector(".dark").addEventListener("click", function () {
+                let productName = document.querySelector(".prodText h4").innerText;
+                let productPrice = parseInt(document.querySelector(".prodText h2").innerText.replace("Rs.", ""));
+                let productImage = document.querySelector(".prodImage img").src;
+                let quantity = parseInt(document.querySelector(".prodText input").value);
+
+                let product = {
+                    id: productName.replace(/\s+/g, "-").toLowerCase(), // Unique ID
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: quantity
+                };
+
+                // Check if product already exists in cart
+                let existingItem = cart.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity += quantity;  // Update quantity
+                } else {
+                    cart.push(product);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert("Item added to cart!");
+            });
+        });
+    </script>
+
+    <script src = "../static/script.js"></script>
+    <script src = "../static/product.js"></script>
+    <script src = "../static/shop.js"></script>
+{% endblock %}
