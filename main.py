@@ -14,59 +14,68 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-# Serve HTML files (shop.html, etc.)
+# Home Page
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+# Shop Page (fetch products from DB)
 @app.get("/shop", response_class=HTMLResponse)
-async def shop(request: Request):
+def shop(request: Request):
     try:
-        products = []
-        async for product in product_collection.find():
-            product["_id"] = str(product["_id"])
-            products.append(product)
+        products = list(product_collection.find())
+        for product in products:
+            product["_id"] = str(product["_id"])  # Convert ObjectId to string
     except Exception as e:
         print(f"Error: {e}")
+        products = []
     return templates.TemplateResponse("shop.html", {"request": request, "products": products})
 
+# Contact Page
 @app.get("/contact", response_class=HTMLResponse)
-async def contact(request: Request):
+def contact(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
 
+# Cart Page
 @app.get("/cart", response_class=HTMLResponse)
-async def cart(request: Request):
+def cart(request: Request):
     return templates.TemplateResponse("cart.html", {"request": request})
 
-@app.get("/product")
-async def product(request: Request):
+# Product Details Page
+@app.get("/product", response_class=HTMLResponse)
+def product(request: Request):
     return templates.TemplateResponse("product.html", {"request": request})
 
-@app.get("/confirm")
-async def confirm(request: Request):
+# Order Confirmation
+@app.get("/confirm", response_class=HTMLResponse)
+def confirm(request: Request):
     return templates.TemplateResponse("confirm.html", {"request": request})
 
-@app.get("/receipt")
-async def receipt(request: Request):
+# Receipt Page
+@app.get("/receipt", response_class=HTMLResponse)
+def receipt(request: Request):
     return templates.TemplateResponse("receipt.html", {"request": request})
 
-# Get all products
+
+
+# --- API Endpoints ---
+
+# Get all products (API)
 @app.get("/products")
-async def get_products():
-    products = []
-    async for product in product_collection.find():
-        product["_id"] = str(product["_id"])  # Convert ObjectId to string
-        products.append(product)
+def get_products():
+    products = list(product_collection.find())
+    for product in products:
+        product["_id"] = str(product["_id"])
     return products
 
 # Add a product
 @app.post("/products")
-async def add_product(product: Product):
-    result = await product_collection.insert_one(product.model_dump())
+def add_product(product: Product):
+    result = product_collection.insert_one(product.model_dump())
     return {"message": "Product added", "id": str(result.inserted_id)}
 
 # Place an order
 @app.post("/orders")
-async def place_order(order: Order):
-    result = await order_collection.insert_one(order.model_dump())
+def place_order(order: Order):
+    result = order_collection.insert_one(order.model_dump())
     return {"message": "Order placed", "orderId": str(result.inserted_id)}
