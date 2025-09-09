@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-	// Generate a unique order number
+	    // Generate a unique order number
         let orderNumber = localStorage.getItem("orderNumber");
         if (!orderNumber) {
             orderNumber = 1; // Start with 1
@@ -86,32 +86,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Store address details
         let addressDetails = { name, contact, house, street, block, area, landmark, city: "Karachi" };
-
         localStorage.setItem("addressDetailsJS", JSON.stringify({ ...addressDetails, orderNumber }));
 
         
-        fetch("http://localhost:5000/save-order", {
+        fetch("/save-order", {  // Remove http://localhost:5000 to use relative path
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ orderNumber, addressDetails }),
+            body: JSON.stringify({
+                orderNumber,
+                addressDetails,
+                orderDetails: JSON.parse(localStorage.getItem("orderDetails"))
+            }),
         })
-            .then((response) => {
-                if (response.ok) {
-                    alert(`Order placed successfully! Your Order Number is: ${orderNumber}`);
-                    window.location.href = "/receipt";
-                } else {
-                    alert("Failed to save the order. Please try again.");
-                }
-            })
-            .catch((error) => {
-                console.error("Error saving order:", error);
-                alert("An error occurred while saving your order.");
-            });
-
-
-        alert(`Order placed successfully! Your Order Number is: ${orderNumber}`);
-        window.location.href = "/receipt"; // Redirect to receipt page
+        .then(async (response) => {
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data.status === "success") {
+                localStorage.removeItem("cart");
+                localStorage.removeItem("orderDetails");
+                alert(`Order placed successfully! Your Order Number is: ${orderNumber}`);
+                window.location.href = "/receipt";
+            } else {
+                throw new Error(data.message || "Failed to save the order");
+            }
+        })
+        .catch((error) => {
+            console.error("Error saving order:", error);
+            alert(`Error placing order: ${error.message}`);
+        });
     });
 });

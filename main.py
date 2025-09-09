@@ -4,10 +4,19 @@ from models import Product, Order
 from database import product_collection, order_collection
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 
-import os
+import os, datetime
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with your frontend domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Serve static files (CSS, JS, images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -20,7 +29,7 @@ def home(request: Request):
     try:
         products = list(
             product_collection.find().sort([
-                ("orders_placed", -1),
+                ("placed_orders", -1),
                 ("_id", -1)
             ]).limit(3)
         )
@@ -63,7 +72,7 @@ def product(request: Request):
     try:
         products = list(
             product_collection.find().sort([
-                ("orders_placed", -1),
+                ("placed_orders", -1),
                 ("_id", -1)
             ]).limit(3)
         )
@@ -77,9 +86,9 @@ def product(request: Request):
     return templates.TemplateResponse("product.html", {"request": request, "products": products})
 
 # Order Confirmation
-@app.get("/confirm", response_class=HTMLResponse)
+@app.get("/address_OrderConfirm", response_class=HTMLResponse)
 def confirm(request: Request):
-    return templates.TemplateResponse("confirm.html", {"request": request})
+    return templates.TemplateResponse("address_OrderConfirm.html", {"request": request})
 
 # Receipt Page
 @app.get("/receipt", response_class=HTMLResponse)
@@ -109,3 +118,56 @@ def add_product(product: Product):
 def place_order(order: Order):
     result = order_collection.insert_one(order.model_dump())
     return {"message": "Order placed", "orderId": str(result.inserted_id)}
+
+
+@app.post("/save-order")
+async def save_order(request: Request):
+    try:
+        # Get order data from request body
+        print("Received save-order request")
+        order_data = await request.json()
+        print(f"Order data received: {order_data}")
+        
+        # Validate required fields
+        if not all(key in order_data for key in ["orderNumber", "addressDetails", "orderDetails"]):
+            return {"status": "error", "message": "Missing required order data"}
+            
+        # Extract order details
+        order_number = order_data["orderNumber"]
+        address_details = order_data["addressDetails"]
+        order_details = order_data["orderDetails"]
+        
+        if not order_details.get("cart"):
+            return {"status": "error", "message": "No products in cart"}
+            
+        # Create order document
+        order_doc = {
+            "orderNumber": order_number,
+            "customerDetails": address_details,
+            "products": order_details["cart"],
+            "totalAmount": order_details["totalAmount"],
+            "shippingCost": order_details["shippingCost"],
+            "orderDate": datetime.datetime.now()
+        }
+        
+        # Insert into orders collection
+        result = order_collection.insert_one(order_doc)
+        if not result.inserted_id:
+            raise Exception("Failed to insert order")
+        
+        # Update products collection - increment placed_orders
+        for product in order_details["cart"]:
+            update_result = product_collection.update_one(
+                {"name": product["name"]},
+                {"$inc": {"placed_orders": product["quantity"]}}
+            )
+            if update_result.modified_count == 0:
+                print(f"Warning: Product '{product['name']}' not found in database")
+            
+        return {"status": "success", "orderId": str(result.inserted_id)}
+        
+    except Exception as e:
+        print(f"Error in save_order: {str(e)}")
+        import traceback
+        print(traceback.format_exc())
+        return {"status": "error", "message": str(e)}
