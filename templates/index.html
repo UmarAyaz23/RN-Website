@@ -45,38 +45,18 @@
     <section id = "featuredProd" class = "container">
         <h2>Featured Products</h2>
         <div class = "prod-container">
-            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
-                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
-                <div class="desc">
-                    <span>RN</span>
-                    <h5>Blue De Chanel</h5>
-                    <span>Some description about the product...</span>
-                    <h4>2500/- PKR</h4>
+            {% for product in products %}
+                <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.imageURL }}', '{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}')">
+                    <img src = "{{ product.imageURL }}" alt = "">
+                    <div class = "desc">
+                        <span>RN</span>
+                        <h5>{{ product.name }}</h5>
+                        <span>{{ product.description }}</span>
+                        <h4>{{ product.price }}/- PKR</h4>
+                    </div>
+                    <button class = "dark">Add To Cart</button>
                 </div>
-                <button class = "dark">Add To Cart</button>
-            </div>
-
-            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
-                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
-                <div class="desc">
-                    <span>RN</span>
-                    <h5>Blue De Chanel</h5>
-                    <span>Some description about the product...</span>
-                    <h4>2500/- PKR</h4>
-                </div>
-                <button class = "dark">Add To Cart</button>
-            </div>
-
-            <div class="prod" onclick = "viewProduct('RN\'s Blue De Chanel', '2500', '../static/images/Product/Blue De Chanel - Product.jpg', ['../static/images/Product/Blue De Chanel - Product.jpg', '../static/images/Product/CK Eternity Men - Product.jpg', '../static/images/Product/Dior Sauvage - Product Design.jpg', '../static/images/Product/Polo Blue - Product.jpg'], 'Description about the product....')">
-                <img src="../static/images/Product/Blue De Chanel - Product.jpg" alt="">
-                <div class="desc">
-                    <span>RN</span>
-                    <h5>Blue De Chanel</h5>
-                    <span>Some description about the product...</span>
-                    <h4>2500/- PKR</h4>
-                </div>
-                <button class = "dark">Add To Cart</button>
-            </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

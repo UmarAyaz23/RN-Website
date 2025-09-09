@@ -10,6 +10,7 @@ class Product(BaseModel):
     smallImg02: str
     smallImg03: str
     smallImg04: str
+    orders_placed: int
 
 class ProductInOrder(BaseModel):
     name: str

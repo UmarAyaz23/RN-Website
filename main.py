@@ -17,7 +17,21 @@ templates = Jinja2Templates(directory="templates")
 # Home Page
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    try:
+        products = list(
+            product_collection.find().sort([
+                ("orders_placed", -1),
+                ("_id", -1)
+            ]).limit(3)
+        )
+        for product in products:
+            product["_id"] = str(product["_id"])
+
+    except Exception as e:
+        print(f"Error: {e}")
+        products = []
+
+    return templates.TemplateResponse("index.html", {"request": request, "products": products})
 
 # Shop Page (fetch products from DB)
 @app.get("/shop", response_class=HTMLResponse)
@@ -25,10 +39,12 @@ def shop(request: Request):
     try:
         products = list(product_collection.find())
         for product in products:
-            product["_id"] = str(product["_id"])  # Convert ObjectId to string
+            product["_id"] = str(product["_id"])
+
     except Exception as e:
         print(f"Error: {e}")
         products = []
+
     return templates.TemplateResponse("shop.html", {"request": request, "products": products})
 
 # Contact Page
@@ -44,7 +60,21 @@ def cart(request: Request):
 # Product Details Page
 @app.get("/product", response_class=HTMLResponse)
 def product(request: Request):
-    return templates.TemplateResponse("product.html", {"request": request})
+    try:
+        products = list(
+            product_collection.find().sort([
+                ("orders_placed", -1),
+                ("_id", -1)
+            ]).limit(3)
+        )
+        for product in products:
+            product["_id"] = str(product["_id"])
+
+    except Exception as e:
+        print(f"Error: {e}")
+        products = []
+
+    return templates.TemplateResponse("product.html", {"request": request, "products": products})
 
 # Order Confirmation
 @app.get("/confirm", response_class=HTMLResponse)
