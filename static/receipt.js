@@ -85,6 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     orderTable.appendChild(totalRow);
 
+    window.addEventListener("beforeunload", function() {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("orderDetails");
+        localStorage.removeItem("addressDetailsJS");  // Also remove address details
+    });
+
     // Handle Print Receipt button
     document.querySelector(".dark").addEventListener("click", function () {
         window.print();

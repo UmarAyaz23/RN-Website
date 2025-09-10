@@ -6,6 +6,7 @@ class Product(BaseModel):
     price: float
     description: str
     imageUrl: str
+    category: str
     smallImg01: str
     smallImg02: str
     smallImg03: str

@@ -10,7 +10,7 @@
 
     <section id = "browseProd" class = "container">
         <div class = "shopContainer">
-            <!-- <div class = "filterContainer">
+            <div class = "filterContainer">
                 <div id = "filterBy">
                     <h3>Filter By</h3>
                     <label>
@@ -29,14 +29,14 @@
                         <option value="High-to-Low">High to Low</option>
                     </select>
                 </div>
-            </div> -->
+            </div>
             
             <div class="prod-container">
                 {% for product in products %}
-                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.imageURL }}', '{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}')">
+                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.imageURL }}', '{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
                         <img src = "{{ product.imageURL }}" alt = "">
                         <div class = "desc">
-                            <span>RN</span>
+                            <span>RN - {{ product.category }}</span>
                             <h5>{{ product.name }}</h5>
                             <span>{{ product.description }}</span>
                             <h4>{{ product.price }}/- PKR</h4>

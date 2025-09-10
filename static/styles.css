@@ -82,7 +82,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 20px 0px;
     background: #020b14;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 999;
@@ -513,15 +513,14 @@ footer .copyright a {
 /*----------BROWSE PRODUCTS----------*/
 #browseProd .shopContainer {
     display: flex;
-    justify-content: flex-start;
     padding: 40px 0;
+    gap: 15px;
+    width: 100%;
 }
 
 #browseProd .filterContainer {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100vw;
+    width: 250px;
+    flex-shrink: 0;
 }
 
 #filterBy {
@@ -573,22 +572,20 @@ footer .copyright a {
 }
 
 #browseProd .prod-container {
-    display: flex;
-    justify-content: flex-start;
-    padding: 0;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    width: 100%;
 }
 
 #browseProd .prod {
-    width: calc(33.33% - 10px);
+    display: flex;
+    flex-direction: column;
     padding: 10px 12px;
-    cursor: pointer;
-    transition: 0.5s ease; 
-    position: relative;
-    background:#FFFFFF;
     border: 1px solid #D3D3D3;
+    cursor: pointer;
+    transition: 0.5s ease;
+    background: #FFFFFF;
 }
 
 #browseProd .prod:hover {
@@ -1252,6 +1249,10 @@ footer .copyright a {
 
     /*------------------------------------------------------LANDING PAGE------------------------------------------------------*/
     /*-----NAVBAR-----*/
+    #header {
+        padding: 20px 20px;
+    }
+
     #navbar {
         display: flex;
         flex-direction: column;
@@ -1356,6 +1357,7 @@ footer .copyright a {
     /*-----FOOTER-----*/
     footer {
         justify-content: space-between;
+        padding: 20px 20px;
     }
 
 
@@ -1385,12 +1387,11 @@ footer .copyright a {
     }
 
     #browseProd .prod-container {
-        justify-content: flex-start;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     #browseProd .prod {
-        width: calc(33.33% - 15px);
+        width: 100%;
     }
 
     #browseProd .prod-container button{
@@ -1663,14 +1664,11 @@ footer .copyright a {
 
 
     #browseProd .prod-container {
-        justify-content: space-between;
-        margin: 0;
-        padding: 0;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     #browseProd .prod {
-        width: calc(50% - 10px);
+        width: 100%;
         padding: 10px 12px;
         margin: 0;
     }

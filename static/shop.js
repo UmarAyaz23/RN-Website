@@ -1,10 +1,11 @@
-function viewProduct(name, price, image, smallImages, description) {
+function viewProduct(name, price, image, smallImages, description, category) {
     let product = {
         name: name,
         price: price,
         image: image,
         smallImages: smallImages, // Store small images array
-        description: description
+        description: description,
+        category: category
     };
 
     localStorage.setItem("selectedProduct", JSON.stringify(product));
@@ -27,7 +28,7 @@ fetch(apiUrl)
             prodDiv.innerHTML = `
                 <img src="${prod.imageUrl}" alt="">
                 <div class="desc">
-                    <span>RN</span>
+                    <span>RN - ${prod.category}</span>
                     <h5>${prod.name}</h5>
                     <span>${prod.description.substring(0, 50)}...</span>
                     <h4>${prod.price}/- PKR</h4>
@@ -40,7 +41,8 @@ fetch(apiUrl)
                 prod.price,
                 prod.imageUrl,
                 [prod.smallImg01, smallImg02, smallImg03, smallImg04],  // Assuming only 1 image for now
-                prod.description
+                prod.description,
+                prod.category
             );
 
             productContainer.appendChild(prodDiv);
@@ -50,3 +52,88 @@ fetch(apiUrl)
         console.error('Error fetching products:', error);
         productContainer.innerHTML = "<p>Failed to load products. Try again later.</p>";
     });
+
+
+// FILTER AND SORT PRODUCTS    
+let allProducts = [];
+
+function filterAndSortProducts() {
+    const forHimChecked = document.querySelector('input[value="forHim"]').checked;
+    const forHerChecked = document.querySelector('input[value="forHer"]').checked;
+    const sortValue = document.getElementById('sort').value;
+
+    let filteredProducts = [...allProducts];
+
+    if (forHimChecked || forHerChecked) {
+        filteredProducts = filteredProducts.filter(product => {
+            if (forHimChecked && product.category === 'Men') return true;
+            if (forHerChecked && product.category === 'Women') return true;
+            return false;
+        });
+    }
+
+
+    // Sort Products
+    if (sortValue === 'Low-to-High'){
+        filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    
+    } else if (sortValue === 'High-to-Low') {
+        filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    }
+
+
+    // Display filtered & sorted products
+    const prodContainer = document.querySelector('.prod-container');
+    prodContainer.innerHTML = '';
+
+    filteredProducts.forEach(product => {
+        const prodDiv = document.createElement('div');
+        prodDiv.classList.add('prod');
+        prodDiv.innerHTML = `
+            <img src="${product.imageURL}" alt="">
+            <div class="desc">
+                <span>RN - ${product.category}</span>
+                <h5>${product.name}</h5>
+                <span>${product.description}</span>
+                <h4>${product.price}/- PKR</h4>
+            </div>
+            <button class="dark">Add To Cart</button>
+        `;
+
+        prodDiv.onclick = () => viewProduct(
+            product.name,
+            product.price,
+            product.imageURL,
+            [product.imageURL, product.smallImg01, product.smallImg02, product.smallImg03, product.smallImg04],
+            product.description,
+            product.category
+        );
+
+        prodContainer.appendChild(prodDiv);
+    });
+}
+
+
+// Add event listeners for filters and sort
+document.addEventListener('DOMContentLoaded', function() {
+    // Add change listeners to checkboxes
+    document.querySelectorAll('input[name="category"]').forEach(checkbox => {
+        checkbox.addEventListener('change', filterAndSortProducts);
+    });
+
+    // Add change listener to sort select
+    document.getElementById('sort').addEventListener('change', filterAndSortProducts);
+
+    // Fetch initial products
+    fetch("/products")
+        .then(response => response.json())
+        .then(products => {
+            allProducts = products;
+            filterAndSortProducts(); // Initial display
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            document.querySelector('.prod-container').innerHTML = 
+                "<p>Failed to load products. Please try again later.</p>";
+        });
+});

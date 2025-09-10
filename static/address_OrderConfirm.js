@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    localStorage.setItem("orderNumber", 0);
+    // localStorage.setItem("orderNumber", 0); USE THIS TO SET ORDER NUMBER TO 0 ALWAYS, SO EVERY NEW ORDER IS NUMBERED AS 1
 
     let orderDetails = JSON.parse(localStorage.getItem("orderDetails")) || { cart: [], totalAmount: 0, shippingCost: 0 };
     let orderTable = document.querySelector(".confirmOrder tbody");
@@ -86,16 +86,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Store address details
         let addressDetails = { name, contact, house, street, block, area, landmark, city: "Karachi" };
-        localStorage.setItem("addressDetailsJS", JSON.stringify({ ...addressDetails, orderNumber }));
-
         
-        fetch("/save-order", {  // Remove http://localhost:5000 to use relative path
+        fetch("/save-order", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                orderNumber,
                 addressDetails,
                 orderDetails: JSON.parse(localStorage.getItem("orderDetails"))
             }),
@@ -109,9 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
             if (data.status === "success") {
-                localStorage.removeItem("cart");
-                localStorage.removeItem("orderDetails");
-                alert(`Order placed successfully! Your Order Number is: ${orderNumber}`);
+                // Store the server-generated order number
+                localStorage.setItem("addressDetailsJS", JSON.stringify({ 
+                    ...addressDetails, 
+                    orderNumber: data.orderNumber 
+                }));
+                alert(`Order placed successfully! Your Order Number is: ${data.orderNumber}`);
                 window.location.href = "/receipt";
             } else {
                 throw new Error(data.message || "Failed to save the order");

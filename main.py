@@ -6,7 +6,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
-import os, datetime
+import os, random
+from datetime import datetime
 
 app = FastAPI()
 
@@ -128,26 +129,19 @@ async def save_order(request: Request):
         order_data = await request.json()
         print(f"Order data received: {order_data}")
         
-        # Validate required fields
-        if not all(key in order_data for key in ["orderNumber", "addressDetails", "orderDetails"]):
-            return {"status": "error", "message": "Missing required order data"}
-            
-        # Extract order details
-        order_number = order_data["orderNumber"]
-        address_details = order_data["addressDetails"]
-        order_details = order_data["orderDetails"]
-        
-        if not order_details.get("cart"):
-            return {"status": "error", "message": "No products in cart"}
-            
+        # Generate unique order number using timestamp and random number
+        timestamp = datetime.now().strftime('%Y%m%d%H%M')
+        random_suffix = str(random.randint(1000, 9999))
+        order_number = f"RN{timestamp}{random_suffix}"
+
         # Create order document
         order_doc = {
             "orderNumber": order_number,
-            "customerDetails": address_details,
-            "products": order_details["cart"],
-            "totalAmount": order_details["totalAmount"],
-            "shippingCost": order_details["shippingCost"],
-            "orderDate": datetime.datetime.now()
+            "customerDetails": order_data["addressDetails"],
+            "products": order_data["orderDetails"]["cart"],
+            "totalAmount": order_data["orderDetails"]["totalAmount"],
+            "shippingCost": order_data["orderDetails"]["shippingCost"],
+            "orderDate": datetime.now()
         }
         
         # Insert into orders collection
@@ -155,16 +149,14 @@ async def save_order(request: Request):
         if not result.inserted_id:
             raise Exception("Failed to insert order")
         
-        # Update products collection - increment placed_orders
-        for product in order_details["cart"]:
+        # Update products collection
+        for product in order_data["orderDetails"]["cart"]:
             update_result = product_collection.update_one(
                 {"name": product["name"]},
                 {"$inc": {"placed_orders": product["quantity"]}}
             )
-            if update_result.modified_count == 0:
-                print(f"Warning: Product '{product['name']}' not found in database")
             
-        return {"status": "success", "orderId": str(result.inserted_id)}
+        return {"status": "success", "orderNumber": order_number}
         
     except Exception as e:
         print(f"Error in save_order: {str(e)}")
