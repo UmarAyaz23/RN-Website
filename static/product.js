@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Insert main product details
     document.getElementById("productName").innerText = product.name;
+    document.getElementById("productCategory").innerText = product.category;
     document.getElementById("productPrice").innerText = product.price + "/- PKR";
     document.getElementById("mainImg").src = product.image;
     document.getElementById("productDescription").innerText = product.description;

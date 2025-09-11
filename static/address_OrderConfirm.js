@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let row = document.createElement("tr");
         row.innerHTML = `
-            <td>${product.name}</td>
+            <td>${product.name} - ${product.category}</td>
             <td>${product.quantity}</td>
             <td>${subtotal}/-</td>
         `;
@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Store address details
         let addressDetails = { name, contact, house, street, block, area, landmark, city: "Karachi" };
         
+        document.getElementById('loadingOverlay').style.display = 'flex';
         fetch("/save-order", {
             method: "POST",
             headers: {
@@ -111,13 +112,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     ...addressDetails, 
                     orderNumber: data.orderNumber 
                 }));
-                alert(`Order placed successfully! Your Order Number is: ${data.orderNumber}`);
+                //alert(`Order placed successfully! Your Order Number is: ${data.orderNumber}`);
                 window.location.href = "/receipt";
             } else {
                 throw new Error(data.message || "Failed to save the order");
             }
         })
         .catch((error) => {
+            document.getElementById('loadingOverlay').style.display = 'none'; // Hide Loading Overlay
             console.error("Error saving order:", error);
             alert(`Error placing order: ${error.message}`);
         });

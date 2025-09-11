@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tabMobileItem.classList.add("tmCart-Item");
             tabMobileItem.innerHTML = `
                 <div class = "tmCart-Product">
-                    <span class = "tmCart-ProdName">${product.name}</span>
+                    <span class = "tmCart-ProdName">${product.name} - ${product.category}</span>
                     <img src = "${product.image}" alt = ""></td>
                 </div>
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let shippingCost = 200; // Flat shipping cost
         let totalAmount = cart.reduce((acc, product) => acc + product.price * product.quantity, 0) + shippingCost;
-
+        
         localStorage.setItem("orderDetails", JSON.stringify({ cart, totalAmount, shippingCost }));
         
         // ✅ Redirect to the order confirmation page

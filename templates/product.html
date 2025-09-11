@@ -14,6 +14,7 @@
     
         <div class="prodText">
             <h4 id="productName"></h4>
+            <span id="productCategory"></span>
             <h2 id="productPrice"></h2>
             <input type="number" value="1" min="1" id="quantity">
             <button class="dark">Add to Cart</button>
@@ -71,13 +72,15 @@
 
             document.querySelector(".dark").addEventListener("click", function () {
                 let productName = document.querySelector(".prodText h4").innerText;
+                let productCategory = document.getElementById("productCategory").innerText;
                 let productPrice = parseInt(document.querySelector(".prodText h2").innerText.replace("Rs.", ""));
                 let productImage = document.querySelector(".prodImage img").src;
                 let quantity = parseInt(document.querySelector(".prodText input").value);
 
                 let product = {
-                    id: productName.replace(/\s+/g, "-").toLowerCase(), // Unique ID
+                    //id: productName.replace(/\s+/g, "-").toLowerCase(), // Unique ID
                     name: productName,
+                    category: productCategory,
                     price: productPrice,
                     image: productImage,
                     quantity: quantity

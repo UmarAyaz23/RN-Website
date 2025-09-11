@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let subtotal = product.price * product.quantity;
         let row = document.createElement("tr");
         row.innerHTML = `
-            <td>${product.name}</td>
+            <td>${product.name} - ${product.category}</td>
             <td>${product.quantity}</td>
             <td>${subtotal}/-</td>
         `;

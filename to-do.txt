@@ -1,0 +1,2 @@
+- Loading animations for index, shop, product, cart
+- Cart items number display
