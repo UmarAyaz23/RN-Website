@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("cart");
         localStorage.removeItem("orderDetails");
         localStorage.removeItem("addressDetailsJS");  // Also remove address details
+        updateCartCount(); 
     });
 
     // Handle Print Receipt button

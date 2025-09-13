@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ...addressDetails, 
                     orderNumber: data.orderNumber 
                 }));
+                
                 //alert(`Order placed successfully! Your Order Number is: ${data.orderNumber}`);
                 window.location.href = "/receipt";
             } else {

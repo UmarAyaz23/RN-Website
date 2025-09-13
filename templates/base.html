@@ -24,13 +24,21 @@
                     <li><a href="/" class="{% if request.url.path == '/' %}active{% endif %}">Home</a></li>
                     <li><a href="/shop" class="{% if request.url.path == '/shop' %}active{% endif %}">Shop</a></li>
                     <li><a href="/contact" class="{% if request.url.path == '/contact' %}active{% endif %}">Contact</a></li>
-                    <li id="cart"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li id="cart">
+                        <a href="/cart" class="{% if request.url.path == '/cart' %}active{% endif %}">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-count" id="cartCount"></span>
+                        </a>
+                    </li>
                     <a href="#" id="closeTabNavBar"><i class="fa-solid fa-xmark" style="color: #dbab2d;"></i></a>
                 </ul>
             </div>
 
             <div id="tablet">
-                <a href="/cart"><i class="fa-solid fa-cart-shopping" style="color: #dbab2d;"></i></a>
+                <a href="/cart">
+                    <i class="fa-solid fa-cart-shopping" style="color: #dbab2d;"></i>
+                    <span class="cart-count mobile" id="mobileCartCount"></span>
+                </a>
                 <i id="tabNavbar" class="fa-solid fa-bars" style="color: #dbab2d;"></i>
             </div>
         </section>
