@@ -798,75 +798,6 @@ footer .copyright a {
 }
 
 
-/*----------FEATURED PRODUCTS----------*/
-#featuredProd2 {
-    text-align: center;
-    background-color: #FFFFFF;
-    padding: 0 0 40px 0;
-}
-
-#featuredProd2 .prod-container {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-#featuredProd2 .prod {
-    width: calc(33.33% - 10px);
-    padding: 10px 12px;
-    border: 1px solid #D3D3D3;
-    cursor: pointer;
-    transition: 0.5s ease; 
-    position: relative;
-    background:#FFFFFF;
-}
-
-#featuredProd2 .prod:hover {
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
-    transform: scale(1.02);
-}
-
-#featuredProd2 .prod img {
-    width: 100%;
-}
-
-#featuredProd2 .prod .desc {
-    text-align: start;
-    padding: 10px 0;
-}
-
-#featuredProd2 .prod .desc span {
-    color: #606063;
-    font-size: 16px;
-}
-
-#featuredProd2 .prod .desc h5 {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    color: #020b14;
-    font-size: 16px;
-}
-
-#featuredProd2 .prod .desc h4 {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    color: #088178;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-#featuredProd2 .prod button {
-    width: 100%;
-}
-
-#featuredProd2 .prod button:hover {
-    background: #020b14;
-    border: 1px solid #020b14;
-    color: #dbab2d;
-}
-
 /*------------------------------------------------------CONTACT PAGE------------------------------------------------------*/
 /*----------BANNER----------*/
 #contactBanner {
@@ -1496,35 +1427,6 @@ footer .copyright a {
         color: #088178;
         font-weight: 500;
     }
-    
-    /*----------FEATURED PRODUCTS----------*/
-    #featuredProd2 {
-        text-align: center;
-        background-color: #FFFFFF;
-        padding: 0 40px 40px 40px;
-    }
-    
-    #featuredProd2 .prod-container {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 20px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    #featuredProd2 .prod {
-        width: calc(33.33% - 10px);
-        padding: 10px 12px;
-        border: 1px solid #D3D3D3;
-        cursor: pointer;
-        transition: 0.5s ease; 
-        position: relative;
-        background:#FFFFFF;
-    }
-
-    #featuredProd2 .prod button {
-        padding: 14px 14px;
-    }
 
 
     /*------------------------------------------------------CART PAGE------------------------------------------------------*/
@@ -1833,70 +1735,6 @@ footer .copyright a {
         background: #020b14;
         border: 1px solid #020b14;
         color: #dbab2d;
-    }
-
-
-    /*----------FEATURED PRODUCTS----------*/
-    #featuredProd2 {
-        text-align: center;
-        background-color: #FFFFFF;
-        padding: 20px;
-    }
-
-    #featuredProd2 h2 {
-        font-size: 40px;
-    }
-
-    #featuredProd2 .prod-container {
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        margin-left: 0;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        margin-top: 10px;
-        gap: 20px;
-    }
-
-    #featuredProd2 .prod {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #D3D3D3;
-        cursor: pointer;
-        box-shadow: none;
-        transition: 0.5s ease; 
-        position: relative;
-        background:#FFFFFF;
-    }
-
-    #featuredProd2 .prod img {
-        width: 100%;
-    }
-
-    #featuredProd2 .prod .desc {
-        text-align: start;
-        padding: 10px 0;
-
-    }
-
-    #featuredProd2 .prod .desc span {
-        color: #606063;
-        font-size: 16px;
-    }
-
-    #featuredProd2 .prod .desc h5 {
-        padding-top: 14px;
-        padding-bottom: 14px;
-        color: #020b14;
-        font-size: 16px;
-    }
-
-    #featuredProd2 .prod .desc h4 {
-        padding-top: 14px;
-        padding-bottom: 14px;
-        color: #088178;
-        font-size: 22px;
-        font-weight: 500;
     }
 
 

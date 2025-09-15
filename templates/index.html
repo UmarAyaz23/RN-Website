@@ -46,7 +46,7 @@
         <h2>Featured Products</h2>
         <div class = "prod-container">
             {% for product in products %}
-                <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.imageURL }}', '{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
+                <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
                     <img src = "{{ product.imageURL }}" alt = "">
                     <div class = "desc">
                         <span>RN - {{product.category}}</span>
@@ -62,19 +62,6 @@
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const menButton = document.querySelector("#menWomen .men button");
-            const womenButton = document.querySelector("#menWomen .women button");
-
-            menButton.addEventListener('click', () => {
-                window.location.href = "/shop";
-            });
-            womenButton.addEventListener('click', () => {
-                window.location.href = "/shop";
-            });
-        });
-    </script>
     <script src = "../static/script.js"></script>
-    <script src = "../static/shop.js"></script>
+    <script src = "../static/index.js"></script>
 {% endblock %}

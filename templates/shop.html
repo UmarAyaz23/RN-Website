@@ -33,10 +33,10 @@
             
             <div class="prod-container">
                 {% for product in products %}
-                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.imageURL }}', '{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
+                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
                         <img src = "{{ product.imageURL }}" alt = "">
                         <div class = "desc">
-                            <span>RN - {{ product.category }}</span>
+                            <span>RN - {{product.category}}</span>
                             <h5>{{ product.name }}</h5>
                             <span>{{ product.description }}</span>
                             <h4>{{ product.price }}/- PKR</h4>

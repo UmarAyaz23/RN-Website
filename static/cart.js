@@ -2,10 +2,36 @@ document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let cartTable = document.querySelector(".desktop-Cart tbody");
     let tabMobileCart = document.querySelector(".tabMobile-Cart");
+    let checkoutButton = document.querySelector("#cart .dark");
 
     function updateCartDisplay() {
         cartTable.innerHTML = ""; // Clear previous entries
         tabMobileCart.innerHTML = "";
+
+        if (cart.length === 0) {
+            // Show "Nothing here" message for desktop view
+            let emptyRow = document.createElement("tr");
+            emptyRow.innerHTML = `
+                <td colspan="6" style="text-align: center; padding: 20px;">
+                    <h4>Wow, So Empty...</h4>
+                </td>
+            `;
+            cartTable.appendChild(emptyRow);
+
+            // Show "Nothing here" message for mobile view
+            let emptyMobile = document.createElement("div");
+            emptyMobile.innerHTML = `
+                <h4 style="text-align: center; padding: 20px;">Wow, So Empty...</h4>
+            `;
+            tabMobileCart.appendChild(emptyMobile);
+
+            // Hide checkout button
+            checkoutButton.style.display = "none";
+            return;
+        }
+
+        // Show checkout button if cart has items
+        checkoutButton.style.display = "block";
 
         let totalPrice = 0;
 
@@ -58,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let index = e.target.dataset.index;
             cart[index].quantity = parseInt(e.target.value);
             updateCartDisplay();
+            updateCartCount(); 
         }
     });
 
@@ -66,7 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.target.closest(".remove-item")) {
             let index = e.target.closest(".remove-item").dataset.index;
             cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart)); 
             updateCartDisplay();
+            updateCartCount(); 
         }
     });
 
@@ -75,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let index = e.target.dataset.index;
             cart[index].quantity = parseInt(e.target.value);
             updateCartDisplay();
+            updateCartCount(); 
         }
     });
     
@@ -82,7 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.target.closest(".remove-item")) {
             let index = e.target.closest(".remove-item").dataset.index;
             cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart)); 
             updateCartDisplay();
+            updateCartCount(); 
         }
     });
 
@@ -100,5 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // ✅ Redirect to the order confirmation page
         window.location.href = "/address_OrderConfirm";
+        updateCartCount(); 
     });
 });
