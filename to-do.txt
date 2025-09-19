@@ -1,6 +1,6 @@
 - Loading animations for index, shop, product, cart
 - Cart items number display -> DONE
 - Footer and Newsletter positioning -> DONE
-- Search Bar
+- Search Bar -> DONE
 - Newsletter Correction
 - Contact Correction

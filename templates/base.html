@@ -18,6 +18,13 @@
     <div class="full-width-header">
         <section id="header" class="container">
             <a href="/"><img src="../static/images/ReyNoon Logo.jpg" class="logo" alt="" width="70px" height="70px"></a>
+ 
+            <div id="searchBar">
+                <div class="search-wrapper">
+                    <input type="text" placeholder="Search products..." id="searchInput">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
 
             <div>
                 <ul id="navbar">
@@ -35,11 +42,23 @@
             </div>
 
             <div id="tablet">
+                <i class="fa-solid fa-magnifying-glass" id="navSearchIcon"></i>
                 <a href="/cart">
                     <i class="fa-solid fa-cart-shopping" style="color: #dbab2d;"></i>
                     <span class="cart-count mobile" id="mobileCartCount"></span>
                 </a>
                 <i id="tabNavbar" class="fa-solid fa-bars" style="color: #dbab2d;"></i>
+            </div>
+
+            <div id="searchModal" class="search-modal">
+                <div class="search-modal-content">
+                    <span class="close-search">&times;</span>
+                    <div class="modal-search-wrapper">
+                        <input type="text" placeholder="Search products..." id="mobileSearchInput">
+                        <div class="loading-bar" id="searchLoadingBar"></div>
+                        <div class="modal-search-results" id="mobileSearchResults"></div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

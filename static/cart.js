@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let emptyRow = document.createElement("tr");
             emptyRow.innerHTML = `
                 <td colspan="6" style="text-align: center; padding: 20px;">
-                    <h4>Wow, So Empty...</h4>
+                    <h4>Add a product...</h4>
                 </td>
             `;
             cartTable.appendChild(emptyRow);
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Show "Nothing here" message for mobile view
             let emptyMobile = document.createElement("div");
             emptyMobile.innerHTML = `
-                <h4 style="text-align: center; padding: 20px;">Wow, So Empty...</h4>
+                <h4 style="text-align: center; padding: 20px;">Add a product...</h4>
             `;
             tabMobileCart.appendChild(emptyMobile);
 

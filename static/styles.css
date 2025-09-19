@@ -209,12 +209,112 @@ button.red {
 
 
 /*------------------------------------------------------LANDING PAGE------------------------------------------------------*/
+/*----------SEARCH BAR----------*/
+#searchBar {
+    flex: 1;
+    width: 100%;
+    margin: 0 20px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+#searchBar input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 7.5px;
+    border: 2px solid #020b14;
+    background: #f5f5f5;
+    color: #020b14;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+#searchBar input[type="text"]:focus {
+    border: 2px solid #dbab2d;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.search-result-item {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.search-result-item:hover {
+    background-color: #dddddd;
+}
+
+.search-result-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.search-result-item img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+.search-result-details .product-name {
+    color: #020b14;
+    margin: 0;
+    line-height: 1rem;
+    overflow: hidden;
+}
+.search-result-details .product-desc {
+    color: #020b14;
+    margin: 0;
+    font-weight: 200;
+    font-size: 0.85rem;
+    line-height: 0.85rem;
+    overflow: hidden;
+}
+.search-result-details .product-price {
+    color: #088178;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    overflow: hidden;
+}
+
+/* Scrollbar styling for search results */
+.search-results::-webkit-scrollbar {
+    width: 8px;
+}
+.search-results::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+.search-results::-webkit-scrollbar-thumb {
+    background: #dbab2d;
+    border-radius: 4px;
+}
+
+
 /*----------NAVIGATION BAR----------*/
 #navbar {
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    margin-left: 20px;
 }
 
 #navbar li {
@@ -256,6 +356,75 @@ button.red {
     z-index: 998;
 }
 
+
+#navSearchIcon {
+    color: #dbab2d;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 11, 20, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+}
+.search-modal-content {
+    position: relative;
+    width: 100%;
+    margin: 15% auto;
+    padding: 20px;
+}
+
+.close-search {
+    display: none;
+}
+
+.modal-search-wrapper {
+    width: 100%;
+    position: relative;
+}
+.modal-search-wrapper input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 7.5px;
+    border: 2px solid #dbab2d;
+    background: #f5f5f5;
+    color: #020b14;
+    font-size: 16px;
+    outline: none;
+}
+
+.modal-search-results {
+    margin-top: 0.5rem;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.loading-bar {
+    height: 2px;
+    width: 0;
+    background: #dbab2d;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+.loading-bar.active {
+    width: 100%;
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 0; }
+}
 
 /*----------MENWOMEN SECTION----------*/
 #menWomen {
@@ -556,6 +725,10 @@ footer .icon i {
     color: #F5F5F5;
     margin: 0px 3px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+footer .icon i:hover {
+    color: #dbab2d;
 }
 
 footer .copyright {
@@ -811,6 +984,7 @@ footer .copyright a {
     height: 30vh;
     width: 100%;
     padding: 40px;
+    margin-top: 40px;
 }
 
 #contactBanner h2 {
@@ -1291,6 +1465,7 @@ footer .copyright a {
     #navbar li {
         margin-bottom: 25px;
     }
+    
 
     #tablet {
         display: flex;
@@ -1311,7 +1486,7 @@ footer .copyright a {
         color: #dbab2d
     }
 
-    #cart {
+    #searchBar {
         display: none;
     }
 
@@ -1457,6 +1632,7 @@ footer .copyright a {
     /*------------------------------------------------------CONTACT PAGE------------------------------------------------------*/
     #contactBanner {
         height: 20vh;
+        margin-top: 0;
     }
 
     #contactDetails {
