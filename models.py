@@ -7,6 +7,7 @@ class Product(BaseModel):
     description: str
     imageUrl: str
     category: str
+    collection: str
     smallImg01: str
     smallImg02: str
     smallImg03: str

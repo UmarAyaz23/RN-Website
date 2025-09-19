@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const womenButton = document.querySelector("#menWomen .women button");
 
     menButton.addEventListener('click', () => {
+        localStorage.setItem("shopFilter", "Men");
         window.location.href = "/shop";
     });
     womenButton.addEventListener('click', () => {
+        localStorage.setItem("shopFilter", "Women");
         window.location.href = "/shop";
     });
 });
@@ -39,8 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const productDiv = this.closest('.prod');
             
             // Get product details from the specific product div
+            let productInfo = productDiv.querySelector(".desc span").innerText.split(" - ");
+            let productCollection = productInfo[0].replace("RN ", "");
+            let productCategory = productInfo[1];
             let productName = productDiv.querySelector(".desc h5").innerText;
-            let productCategory = productDiv.querySelector(".desc span").innerText.replace("RN - ", "");
             let productPrice = parseInt(productDiv.querySelector(".desc h4").innerText.replace("/- PKR", ""));
             let productImage = productDiv.querySelector("img").src;
             let quantity = 1;
@@ -48,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let product = {
                 name: productName,
                 category: productCategory,
+                collection: productCollection,
                 price: productPrice,
                 image: productImage,
                 quantity: quantity
@@ -56,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Check if product already exists in cart
             let existingItem = cart.find(item => 
                 item.name === product.name && 
-                item.category === product.category
+                item.category === product.category &&
+                item.collection === product.collection
             );
 
             if (existingItem) {

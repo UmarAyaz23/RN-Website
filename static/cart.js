@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             row.innerHTML = `
                 <td><a href="#" class="remove-item" data-index="${index}"><i class="fa-solid fa-xmark"></i></a></td>
                 <td><img src="${product.image}" alt=""></td>
-                <td>${product.name} - ${product.category}</td>
+                <td>${product.name} ${product.collection} - ${product.category}</td>
                 <td>${product.price}/-</td>
                 <td><input type="number" value="${product.quantity}" min="1" class="cart-quantity" data-index="${index}"></td>
                 <td>${subtotal}/-</td>
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tabMobileItem.classList.add("tmCart-Item");
             tabMobileItem.innerHTML = `
                 <div class = "tmCart-Product">
-                    <span class = "tmCart-ProdName">${product.name} - ${product.category}</span>
+                    <span class = "tmCart-ProdName">${product.name} ${product.collection} - ${product.category}</span>
                     <img src = "${product.image}" alt = ""></td>
                 </div>
 

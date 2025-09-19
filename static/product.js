@@ -66,35 +66,48 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.querySelector(".prodText button.dark").addEventListener("click", function () {
-        let productName = document.querySelector(".prodText h4").innerText;
-        let productCategory = document.getElementById("productCategory").innerText;
-        let productPrice = parseInt(document.querySelector(".prodText h2").innerText.replace("Rs.", ""));
-        let productImage = document.querySelector(".prodImage img").src;
-        let quantity = parseInt(document.querySelector(".prodText input").value);
+    // Add click listeners to all Add To Cart buttons
+    document.querySelectorAll(".prod button.dark").forEach(button => {
+        button.addEventListener("click", function(e) {
+            e.stopPropagation(); // Prevent triggering the product view onclick
+            
+            // Get the parent product div
+            const productDiv = this.closest('.prod');
+            
+            // Get product details from the specific product div
+            let productInfo = productDiv.querySelector(".desc span").innerText.split(" - ");
+            let productCollection = productInfo[0].replace("RN ", "");
+            let productCategory = productInfo[1];
+            let productName = productDiv.querySelector(".desc h5").innerText;
+            let productPrice = parseInt(productDiv.querySelector(".desc h4").innerText.replace("/- PKR", ""));
+            let productImage = productDiv.querySelector("img").src;
+            let quantity = 1;
 
-        let product = {
-            name: productName,
-            category: productCategory,
-            price: productPrice,
-            image: productImage,
-            quantity: quantity
-        };
+            let product = {
+                name: productName,
+                category: productCategory,
+                collection: productCollection,
+                price: productPrice,
+                image: productImage,
+                quantity: quantity
+            };
 
-        // Check if product already exists in cart
-        let existingItem = cart.find(item => 
-            item.name === product.name && 
-            item.category === product.category
-        );
+            // Check if product already exists in cart
+            let existingItem = cart.find(item => 
+                item.name === product.name && 
+                item.category === product.category &&
+                item.collection === product.collection
+            );
 
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push(product);
-        }
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push(product);
+            }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("Item added to cart!");
-        updateCartCount();
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Item added to cart!");
+            updateCartCount();
+        });
     });
 });

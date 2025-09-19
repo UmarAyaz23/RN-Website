@@ -11,6 +11,9 @@
     <section id = "browseProd" class = "container">
         <div class = "shopContainer">
             <div class = "filterContainer">
+                <button class = "dark">Originals</button>
+                <button class = "dark">Impressions</button>
+
                 <div id = "filterBy">
                     <h3>Filter By</h3>
                     <label>
@@ -33,10 +36,10 @@
             
             <div class="prod-container">
                 {% for product in products %}
-                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
+                    <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}', '{( product.collection )}')">
                         <img src = "{{ product.imageURL }}" alt = "">
                         <div class = "desc">
-                            <span>RN - {{product.category}}</span>
+                            <span>RN {{product.collection}} - {{product.category}}</span>
                             <h5>{{ product.name }}</h5>
                             <span>{{ product.description }}</span>
                             <h4>{{ product.price }}/- PKR</h4>

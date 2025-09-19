@@ -32,6 +32,33 @@ function updateCartCount() {
     }
 }
 
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Desktop cart click handler
+    const cartLink = document.querySelector("#cart a");
+    cartLink.addEventListener('click', function(e) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cart.length === 0) {
+            e.preventDefault(); // Prevent navigation
+            alert("Cart is Empty"); // Use custom alert if you have it, or regular alert
+            return false;
+        }
+    });
+
+    // Mobile cart click handler
+    const mobileCartLink = document.querySelector("#tablet a");
+    mobileCartLink.addEventListener('click', function(e) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cart.length === 0) {
+            e.preventDefault();
+            alert("Cart is Empty");
+            return false;
+        }
+    });
+
+    updateCartCount();
+});
+
 // Call this function when page loads
 document.addEventListener("DOMContentLoaded", updateCartCount);
 

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let row = document.createElement("tr");
         row.innerHTML = `
-            <td>${product.name} - ${product.category}</td>
+            <td>${product.name} ${product.collection} - ${product.category}</td>
             <td>${product.quantity}</td>
             <td>${subtotal}/-</td>
         `;

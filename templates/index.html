@@ -3,14 +3,14 @@
 {% block title %}RN | Home{% endblock %}
 
 {% block content %}
-    <section id = "menWomen" class = "container">
-        <div class = "men">
-            <h2>For Him</h2>
+    <section id = "originalsImpressions" class = "container">
+        <div class = "originals" id = "originalsBtn">
+            <h2>Originals</h2>
             <button class = "gold">Explore</button>
         </div>
 
-        <div class = "women">
-            <h2>For Her</h2>
+        <div class = "impressions" id = "expressionsBtn">
+            <h2>Impressions</h2>
             <button class = "gold">Explore</button>
         </div>
     </section>
@@ -46,10 +46,10 @@
         <h2>Featured Products</h2>
         <div class = "prod-container">
             {% for product in products %}
-                <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}')">
+                <div class = "prod" onclick = "viewProduct('{{ product.name }}', '{{ product.price }}', '{{ product.imageURL }}', ['{{ product.smallImg01 }}', '{{ product.smallImg02 }}', '{{ product.smallImg03 }}', '{{ product.smallImg04 }}'], '{{ product.description }}', '{{ product.category }}', '{( product.collection )}')">
                     <img src = "{{ product.imageURL }}" alt = "">
                     <div class = "desc">
-                        <span>RN - {{product.category}}</span>
+                        <span>RN {{product.collection}} - {{product.category}}</span>
                         <h5>{{ product.name }}</h5>
                         <span>{{ product.description }}</span>
                         <h4>{{ product.price }}/- PKR</h4>
