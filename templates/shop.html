@@ -11,8 +11,8 @@
     <section id = "browseProd" class = "container">
         <div class = "shopContainer">
             <div class = "filterContainer">
-                <button class = "dark">Originals</button>
-                <button class = "dark">Impressions</button>
+                <button class = "dark" id = "originals-button">Originals</button>
+                <button class = "dark" id = "impressions-button">Impressions</button>
 
                 <div id = "filterBy">
                     <h3>Filter By</h3>
@@ -31,6 +31,52 @@
                         <option value="Low-to-High">Low to High</option>
                         <option value="High-to-Low">High to Low</option>
                     </select>
+                </div>
+            </div>
+
+            <div class = "filterModal">
+                <div id = "filterBy-mobile">
+                    <button class = "dark" id = "filterModal-button">Filters</button>
+                </div>  
+                
+                <div id = "sortBy-mobile">
+                    <select id="sort-mobile">
+                        <option value="Default">Sort By</option>
+                        <option value="Low-to-High">Low to High</option>
+                        <option value="High-to-Low">High to Low</option>
+                    </select>
+                </div>
+            </div>
+            <div id="filter-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Filters</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="collection-filters">
+                            <h4>Collection</h4>
+                            <div class="filter-buttons">
+                                <button class="dark" id="originals-button-mobile">Originals</button>
+                                <button class="dark" id="impressions-button-mobile">Impressions</button>
+                            </div>
+                        </div>
+                        <div class="category-filters">
+                            <h4>Category</h4>
+                            <div class="filter-checkboxes">
+                                <label>
+                                    <input type="checkbox" name="category" value="forHim"> For Him
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="category" value="forHer"> For Her
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="dark" id="apply-filters">Apply</button>
+                        <button class="dark" id="clear-filters">Clear All</button>
+                    </div>
                 </div>
             </div>
             

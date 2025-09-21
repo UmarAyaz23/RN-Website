@@ -1,0 +1,267 @@
+/*----------originalsImpressions SECTION----------*/
+#originalsImpressions {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    padding: 40px 0;
+}
+
+#originalsImpressions .originals {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background-image: url("../static/images/Product/Creed\ Aventus_SPRAY.jpg");
+    width: 50%;
+    height: 50vh;
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: #F5F5F5;
+    padding: 30px;
+}
+
+#originalsImpressions .impressions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("../static/images/Product/Black\ Opium_SPRAY.jpg");
+    width: 50%;
+    height: 50vh;
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: #F5F5F5;
+    padding: 30px;
+}
+
+#originals-button:hover, #impressions-button:hover {
+    background: #020b14;
+    color: #dbab2d;
+}
+
+#originals-button.active, #impressions-button.active {
+    background: #020b14;
+    color: #dbab2d;
+}
+
+#originals-button.active::after, #impressions-button.active::after {
+    background: #020b14;
+    color: #dbab2d;
+}
+
+#originalsImpressions .originals h2, #originalsImpressions .impressions h2 {
+    color: #F5F5F5;
+    font-weight: 500;
+}
+
+
+/*----------FEATURE SECTION----------*/
+#features {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #dbab2d;
+    padding: 40px;
+}
+
+#features .fe-box {
+    width: 180px;
+    text-align: center;
+    padding: 25px 15px;
+    background-color: #F5F5F5;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+    border: 1px solid #F5F5F5;
+    border-radius: 4px;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+#features .fe-box:hover {
+    box-shadow: 10px 10px 54px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+#features .fe-box img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#features .fe-box h6 {
+    padding: 9px 8px 6px 8px;
+    line-height: 1;
+    border-radius: 4px;
+    color: #088178;
+    background-color: #fddde4;
+    font-weight: 500;
+}
+
+#features .fe-box:nth-child(2) h6 {
+    background-color: #cedbbc;
+}
+
+#features .fe-box:nth-child(3) h6 {
+    background-color: #d1e8f2;
+}
+
+#features .fe-box:nth-child(4) h6 {
+    background-color: #cdd4f8;
+}
+
+#features .fe-box:nth-child(5) h6 {
+    background-color: #f6dbf6;
+}
+
+#features .fe-box:nth-child(6) h6 {
+    background-color: #fff2e5;
+}
+
+
+/*----------FEATURED PRODUCTS----------*/
+#featuredProd {
+    text-align: center;
+    background-color: #FFFFFF;
+    padding: 40px 0;
+}
+
+#featuredProd .prod-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#featuredProd .prod {
+    width: calc(33.33% - 10px);
+    padding: 10px 12px;
+    border: 1px solid #D3D3D3;
+    cursor: pointer;
+    transition: 0.5s ease; 
+    position: relative;
+    background:#FFFFFF;
+}
+
+#featuredProd .prod:hover {
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
+    transform: scale(1.02);
+}
+
+#featuredProd .prod img {
+    width: 100%;
+}
+
+#featuredProd .prod .desc {
+    text-align: start;
+    padding: 10px 0;
+}
+
+#featuredProd .prod .desc span {
+    color: #606063;
+    font-size: 16px;
+}
+
+#featuredProd .prod .desc h5 {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    color: #020b14;
+    font-size: 16px;
+}
+
+#featuredProd .prod .desc h4 {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    color: #088178;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#featuredProd .prod button {
+    width: 100%;
+}
+
+#featuredProd .prod button:hover {
+    background: #020b14;
+    border: 1px solid #020b14;
+    color: #dbab2d;
+}
+
+
+/*----------RESPONSIVE FOR TABLET----------*/
+@media (max-width: 1024px) {
+    /*-----originalsImpressions-----*/
+    #originalsImpressions {
+        padding: 0 0 40px 0;
+    }
+    .section-p1 {
+        padding: 20px 20px;
+    }
+
+    #originalsImpressions .originals {
+        min-width: 100%;
+        height: 30vh;
+    }
+
+    #originalsImpressions .impressions {
+        min-width: 100%;
+        height: 30vh;
+    }
+
+
+    /*-----FEATURES-----*/
+    #features {
+        justify-content: space-between; 
+        gap: 20px; 
+        padding: 20px;
+        margin: 0;
+    }
+
+    #features .fe-box {
+        width: calc(20% - 20px);
+        margin: 0;
+    }
+
+
+    /*-----FEATUREDPROD-----*/
+    #featuredProd .prod-container {
+        justify-content: center;
+        padding: 20px;
+    }
+
+    #featuredProd .prod-container button {
+        padding: 14px 14px;
+    }
+}
+
+
+/*----------RESPONSIVE FOR MOBILE----------*/
+@media (max-width: 477px) {
+    #originalsImpressions {
+        padding: 0 0 10px 0;
+    } 
+
+    #originalsImpressions h2 {
+        font-size: 35px;
+    }
+
+    #originalsImpressions .originals button, #originalsImpressions .impressions button {
+        font-size: 14px;
+        padding: 14px 40px;
+    }
+
+    #features {
+        justify-content: center; 
+    }
+
+    #features .fe-box {
+        width: 175px;
+        margin: 0 0 5px 0;
+    }
+
+    #featuredProd .prod {
+        width: 100%;
+    }
+}

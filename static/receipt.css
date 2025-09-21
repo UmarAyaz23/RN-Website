@@ -1,0 +1,234 @@
+/*------------------------------------------------------RECEIPT PAGE------------------------------------------------------*/
+#receipt .orderText {
+    margin-bottom: 20px;
+}
+
+#receipt .orderText h4 {
+    margin-bottom: 10px;
+}
+
+#receipt .orderText span {
+    font-weight: 400;
+}
+
+#receipt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 1200px;
+    padding: 40px 0;
+}
+
+#receipt .addressDetails {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+#receipt .addressDetails form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+#receipt .addressDetails form p{
+    font-size: 14px;
+}
+
+#receipt .addressDetails form input {
+    width: 100%;
+    padding: 12px 15px;
+    outline: none;
+    margin-bottom: 20px;
+    border: 1px solid #D3D3D3;
+    resize: none;
+    transition: 0.3s ease;
+}
+
+
+#receipt .orderedProdDetails {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    overflow-x: auto;
+}
+
+#receipt .orderedProdDetails table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    white-space: nowrap;
+    border: 1px solid #D3D3D3;
+}
+
+#receipt .orderedProdDetails table td:nth-child(1) {
+    width: 250px;
+    text-align: center;
+}
+
+#receipt .orderedProdDetails table td:nth-child(2), #receipt .orderedProdDetails table td:nth-child(3){
+    width: 150px;
+    text-align: center;
+} 
+
+#receipt .orderedProdDetails table thead{
+    border: 1px solid #D3D3D3;
+    border-left: none;
+    border-right: none;
+}
+
+#receipt .orderedProdDetails table thead td{
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 18px 0;
+}
+
+#receipt .orderedProdDetails table tbody tr td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+#receipt .orderedProdDetails button {
+    margin-top: 20px;
+}
+
+#receipt .orderedProdDetails button:hover {
+    background: #020b14;
+    border: 1px solid #020b14;
+    color: #dbab2d;
+}
+
+@media print {
+    body * {
+        visibility: hidden; 
+    }
+
+    #receipt, #receipt * {
+        visibility: visible; 
+    }
+
+    #receipt {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .orderedProdDetails button {
+        display: none;
+    }
+}
+
+
+
+/*----------RESPONSIVE FOR TABLET----------*/
+@media (max-width: 1024px) {
+    /*------------------------------------------------------RECEIPT PAGE------------------------------------------------------*/
+    #receipt {
+        padding: 20px;
+    }
+    
+    #receipt .orderText {
+        margin-bottom: 20px;
+    }
+    
+    #receipt .addressDetails {
+        width: 100%;
+    }
+    
+    #receipt .addressDetails form input {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    
+    #receipt .orderedProdDetails {
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    #receipt .orderedProdDetails table td:nth-child(1) {
+        width: 250px;
+        text-align: center;
+    }
+    
+    #receipt .orderedProdDetails table td:nth-child(2), #receipt .orderedProdDetails table td:nth-child(3){
+        width: 150px;
+        text-align: center;
+    } 
+    
+    #receipt .orderedProdDetails table thead{
+        border: 1px solid #D3D3D3;
+        border-left: none;
+        border-right: none;
+    }
+    
+    #receipt .orderedProdDetails table thead td{
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 18px 0;
+    }
+    
+    #receipt .orderedProdDetails table tbody tr td {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    
+    #receipt .orderedProdDetails button {
+        margin-top: 10px;
+    }
+}
+
+
+/*----------RESPONSIVE FOR MOBILE----------*/
+@media (max-width: 477px) {
+    /*------------------------------------------------------RECEIPT PAGE------------------------------------------------------*/
+    #receipt .orderText {
+        margin-bottom: 20px;
+    }
+    
+    #receipt {
+        padding: 20px;
+    }
+    
+    #receipt .addressDetails {
+        width: 100%;
+    }
+
+    #receipt .addressDetails form input {
+        margin-bottom: 10px;
+    }
+    
+    
+    #receipt .orderedProdDetails {
+        overflow-x: auto;
+    }
+
+    #receipt .orderedProdDetails table td:nth-child(1) {
+        width: 150px;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    #receipt .orderedProdDetails table td:nth-child(2), #receipt .orderedProdDetails table td:nth-child(3){
+        width: 75px;
+        text-align: center;
+        padding: 10px;
+    } 
+
+    
+    #receipt .orderedProdDetails button {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
